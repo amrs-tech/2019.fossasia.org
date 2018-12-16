@@ -29,33 +29,7 @@
     <link href="css/theme-lava.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
-    <style>
-    #back2Top {
-    width: 40px;
-    line-height: 40px;
-    overflow: hidden;
-    z-index: 999;
-    display: none;
-    cursor: pointer;
-    -moz-transform: rotate(270deg);
-    -webkit-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg);
-    position: fixed;
-    bottom: 50px;
-    right: 0;
-    background-color: #DDD;
-    color: #555;
-    text-align: center;
-    font-size: 30px;
-    text-decoration: none;
-    }
-    #back2Top:hover {
-    background-color: #DDF;
-    color: #000;
-    }
-    </style>	   
+    	   
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -70,22 +44,7 @@
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-17146009-5', 'auto');
         ga('send', 'pageview');
-	    $(window).scroll(function() {
-    var height = $(window).scrollTop();
-    if (height > 100) {
-        $('#back2Top').fadeIn();
-    } else {
-        $('#back2Top').fadeOut();
-    }
-});
-$(document).ready(function() {
-    $("#back2Top").click(function(event) {
-        event.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-        return false;
-    });
-
-});
+	    
     </script>
 </head>
 
@@ -7982,7 +7941,52 @@ $(document).ready(function() {
                 </div>
             </footer>
         </div>
-	<a id="back2Top" title="Back to top" href="#top">&#10148;</a>
+	<style>
+		#return-to-top {
+	    position: fixed;
+	    bottom: 20px;
+	    right: 20px;
+	    background: rgb(0, 0, 0);
+	    background: rgba(0, 0, 0, 0.7);
+	    width: 50px;
+	    height: 50px;
+	    display: block;
+	    text-decoration: none;
+	    -webkit-border-radius: 35px;
+	    -moz-border-radius: 35px;
+	    border-radius: 35px;
+	    display: none;
+	    -webkit-transition: all 0.3s linear;
+	    -moz-transition: all 0.3s ease;
+	    -ms-transition: all 0.3s ease;
+	    -o-transition: all 0.3s ease;
+	    transition: all 0.3s ease;
+	}
+	#return-to-top i {
+	    color: #fff;
+	    margin: 0;
+	    position: relative;
+	    left: 16px;
+	    top: 13px;
+	    font-size: 19px;
+	    -webkit-transition: all 0.3s ease;
+	    -moz-transition: all 0.3s ease;
+	    -ms-transition: all 0.3s ease;
+	    -o-transition: all 0.3s ease;
+	    transition: all 0.3s ease;
+	}
+	#return-to-top:hover {
+	    background: rgba(0, 0, 0, 0.9);
+	}
+	#return-to-top:hover i {
+	    color: #fff;
+	    top: 5px;
+}
+
+	</style>
+	<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -7997,6 +8001,18 @@ $(document).ready(function() {
         <script src="js/placeholders.min.js"></script>
         <script src="js/scripts.js"></script>
         <script>
+	    $(window).scroll(function() {
+    	if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    	} else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    	}
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+    	$('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    	}, 500);
+	});
             $(document).ready(function () {
                 $('#overlay').on("mouseup", function () { // lock it when mouse up
                     $('#map').addClass('scrolloff');
